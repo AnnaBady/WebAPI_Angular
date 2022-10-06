@@ -1,0 +1,66 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" 
+data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="addClick()"
+data-backdrop="static" data-keyboard="false"
+>
+    Add Document
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="btn-close" 
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()"></button>        
+        </div>
+        <div class="modal-body">
+          <app-add-edit [doc]="doc" *ngIf="ActiveAddEditDocComp">
+          </app-add-edit>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Document Name</th>
+            <th>Date</th>
+            <th>Created Date</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of DocumentList">
+                <td>{{item.Name}}</td>
+                <td>{{item.Date}}</td>
+                <td>{{item.Created}}</td>
+                <td>{{item.DueDate}}</td>
+                <td>{{item.PriorityId}}</td>      
+                <td>
+                    <button type="button" class="btn btn-light mr-1">
+                        Details
+                    </button>
+                    <button type="button" class="btn btn-light mr-1"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="editClick(item)"
+                    data-backdrop="static" data-keyboard="false">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-light mr-1">
+                        Delete
+                    </button>
+                </td>      
+        </tr>
+    </tbody>
+</table>
